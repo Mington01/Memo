@@ -7,17 +7,14 @@
 
 header {
 	height:70px;
-}
-
-.contents {
-	height:500px;
+	background-color:#dddddd;
 }
 
 .contents > .join-box {
-	height:500px;
 	width:350px;
 }
 
 footer {
 	height: 50px;
+	background-color:#dddddd;
 }
