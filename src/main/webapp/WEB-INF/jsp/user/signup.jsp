@@ -42,26 +42,42 @@
 				let name = $("#nameInput").val();
 				let email = $("#emailInput").val();
 				
-				if(id == null || id == "") {
+				if(id == "") {
 					alert("아이디를 입력하세요. ");
 					return;
 				}
-				if(password == null || password == "") {
+				if(password == "") {
 					alert("비밀번호를 입력하세요. ");
 					return;
 				}
-				if(passwordConfirm == null || passwordConfirm == "") {
-					alert("비밀번호 확인란을 입력하세요. ");
+				if(passwordConfirm != password) {
+					alert("비밀번호가 일치하지 않습니다.");
 					return;
 				}
-				if(password == null || password == "") {
-					alert("비밀번호를 입력하세요. ");
+				if(name == "") {
+					alert("이름을 입력하세요. ");
 					return;
 				}
-				if(password == null || password == "") {
-					alert("비밀번호를 입력하세요. ");
+				if(email == "") {
+					alert("이메일을 입력하세요. ");
 					return;
 				}
+				
+				$.ajax({
+					type:"post"
+					, url:"/user/signup"
+					, data:{"loginId":id, "password":password, "name":name, "email":email}
+					, success:function(data) {
+						if(data.result == "success") {
+							location.href = "/user/signin/view";
+						} else {
+							alert("회원가입 실패")
+						}
+					}
+					, error:function() {
+						alert("회원가입 에러")
+					}
+				});
 				
 			});
 		});
