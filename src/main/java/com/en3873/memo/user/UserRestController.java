@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.en3873.memo.user.bo.UserBO;
 
-@RestController // Controller + ResponseBody
+@RestController // @Controller + @ResponseBody
 public class UserRestController {
 	
 	@Autowired
@@ -24,17 +24,20 @@ public class UserRestController {
 			, @RequestParam("name") String name
 			, @RequestParam("email") String email) {
 		
-		int count =  userBO.addUser(loginId, password, name, email);
+		// 암호화 
+		
+		int count = userBO.addUser(loginId, password, name, email);
 		
 		Map<String, String> result = new HashMap<>();
 		
 		if(count == 1) {
-			result.put("result",  "success");
+			result.put("result", "success");
 		} else {
 			result.put("result", "fail");
 		}
 		
 		return result;
+		
 	}
 
 }
