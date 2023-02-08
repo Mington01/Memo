@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.en3873.memo.user.bo.UserBO;
+import com.en3873.memo.user.model.User;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RestController // @Controller + @ResponseBody
 public class UserRestController {
@@ -38,6 +42,32 @@ public class UserRestController {
 		
 		return result;
 		
+	}
+	
+	// 로그인 API
+	@PostMapping("/signin")
+	public Map<String, String> signin(
+			@RequestParam("loginId") String loginId
+			, @RequestParam("password") String password
+			, HttpServletRequest request) {
+		User user = userBO.getUser(loginId,  password);
+		
+		// 세션 객체 얻어오기
+		HttpSession session= request.getSession();
+		
+		// 세션에 특정한 값이 저장되어 있으면 로그인 된 상태
+		// 세션에 특정한 값이 저장되어 있지 않으면 로그인이 되어있지 않은 상
+		session.setAttribute("userId", user.getId());
+		session.setAttribute("userName",  user.getName());
+		
+		Map<String, String> result = new HashMap<>();
+		if(user != null) {
+			result.put("result", "success");
+		} else {
+			result.put("result",  "fail");
+		}
+		
+		return result;
 	}
 
 }
