@@ -16,24 +16,23 @@
 
 </head>
 <body>
-	<div id ="wrap">
+	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
-		
 		<section class="contents d-flex justify-content-center">
 			<div class="join-box my-5">
 				<h2 class="text-center">회원가입</h2>
-				<input type="text" id="idInput" placeholder="아이디" class="form-control mt-2">
-				<input type="password" id="passwordInput" placeholder="비밀번호" class="form-control mt-2">
-				<input type="password" id="passwordConfirmInput" placeholder="비밀번호 확인" class="form-control mt-2">
-				<input type="text" id="nameInput" placeholder="이름" class="form-control mt-2">
-				<input type="text" id="emailInput" placeholder="이메일" class="form-control mt-2">
-				<button type="button" id="joinBtn" class="btn btn-primary btn-block mt-2">입력</button>
+				<input type="text" placeholder="아이디" id="idInput" class="form-control mt-2">
+				<input type="password" placeholder="비밀번호" id="passwordInput" class="form-control mt-2">
+				<input type="password" placeholder="비밀번호 확인" id="passwordConfirmInput" class="form-control mt-2">
+				<input type="text" placeholder="이름" id="nameInput" class="form-control mt-2">
+				<input type="text" placeholder="이메일" id="emailInput" class="form-control mt-2">
+				<button type="button" id="joinBtn" class="btn btn-primary btn-block mt-2">가입</button>
 			</div>
 		</section>
-		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 	
+
 	<script>
 		$(document).ready(function() {
 			$("#joinBtn").on("click", function() {
